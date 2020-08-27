@@ -4,12 +4,13 @@ import { Text, View, StyleSheet } from 'react-native';
 export default function Forecast(props) {
     return (
         <View>
-            <Text style={textStyle.fotecastTextLarge}>{props.main}</Text>
-            <Text style={textStyle.fotecastText}>{props.description}</Text>
+            <Text style={textStyle.fotecastTextMedium}>{props.name}, {props.country}</Text>
             <View style={{flexDirection: 'row', justifyContent: 'center'}}>
                 <Text style={textStyle.fotecastTextLarge}>{props.temp}</Text>
-                <Text style={{fontSize: 18, lineHeight: 42, color: 'white'}}> °C</Text>
+                <Text style={{fontSize: 40, lineHeight: 110, color: 'white'}}> °C</Text>
             </View>
+            <Text style={textStyle.fotecastTextMedium}>{props.main}</Text>
+            <Text style={textStyle.fotecastText}>{props.description}</Text> 
         </View>
     );
 }
@@ -18,7 +19,14 @@ const textStyle = StyleSheet.create({
     fotecastTextLarge: {
         textAlignVertical: "center",
         textAlign: "center",
-        fontSize: 30,
+        fontSize: 100,
+        height: 150,
+        color: 'white'
+    },
+    fotecastTextMedium: {
+        textAlignVertical: "center",
+        textAlign: "center",
+        fontSize: 35,
         height: 50,
         color: 'white'
     },
@@ -26,7 +34,7 @@ const textStyle = StyleSheet.create({
         textAlignVertical: "center",
         textAlign: "center",
         fontSize: 18,
-        height: 100,
+        height: 50,
         color: 'white'
     }
 })

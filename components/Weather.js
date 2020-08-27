@@ -9,7 +9,9 @@ export default function Weather(props) {
     const [forecastInfo, setForecastInfo] = useState({
         main: 'main',
         description: 'description',
-        temp: 0
+        temp: 0,
+        name: 'city',
+        country: 'country'
     })
 
     const kelvinToCelsius = require('kelvin-to-celsius');
@@ -23,7 +25,10 @@ export default function Weather(props) {
                 setForecastInfo({
                     main: json.weather[0].main,
                     description: json.weather[0].description,
-                    temp: kelvinToCelsius(json.main.temp) });
+                    temp: kelvinToCelsius(json.main.temp),
+                    name: json.name,
+                    country: json.sys.country
+                    });
                 })
             .catch((error) => {
                 console.warn(error);
@@ -35,7 +40,7 @@ export default function Weather(props) {
             <ImageBackground source={require('../bg.jpg')} style={styles.backdrop}>
                 {loading === false ? (
                     <View style={styles.headline}>
-                        <Text style={{textAlignVertical: "center",textAlign: "center", fontSize: 20, color: 'white'}}>Zip code is {props.zipCode}.</Text>
+                        <Text style={{textAlignVertical: "center",textAlign: "center", fontSize: 20, height: 30, color: 'white'}}>Zip code is {props.zipCode}.</Text>
                         <Forecast {...forecastInfo}/>
                     </View> ) : (
                     <View style={{flex: 1, justifyContent: 'center'}}>
@@ -50,7 +55,7 @@ export default function Weather(props) {
 const styles = StyleSheet.create({
     backdrop: {
         flexDirection: 'column',
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
         alignItems: 'center',
         width: '100%',
         height: '100%'
@@ -61,7 +66,7 @@ const styles = StyleSheet.create({
         marginTop: 0,
         justifyContent: 'space-evenly',
         width: '100%',
-        height: '40%',
+        height: '70%',
         backgroundColor: 'rgba(0,0,0,0.5)'
     }
 })
