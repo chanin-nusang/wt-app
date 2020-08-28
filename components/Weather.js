@@ -12,7 +12,7 @@ export default function Weather(props) {
         temp: 0,
         name: 'city',
         country: 'country',
-        iconId: 'iconid'
+        icon: '1'
     })
 
     const kelvinToCelsius = require('kelvin-to-celsius');
@@ -29,7 +29,7 @@ export default function Weather(props) {
                     temp: kelvinToCelsius(json.main.temp),
                     name: json.name,
                     country: json.sys.country,
-                    iconId: json.weather.id
+                    icon: 'http://openweathermap.org/img/wn/'+json.weather[0].icon+'@2x.png' 
                     });
                 })
             .catch((error) => {
@@ -38,7 +38,7 @@ export default function Weather(props) {
         }
     }, [props.zipCode])
 
-    return (
+    return (        
             <ImageBackground source={require('../bg.jpg')} style={styles.backdrop}>
                 {loading === false ? (
                     <View style={styles.headline}>

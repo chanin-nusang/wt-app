@@ -2,7 +2,7 @@ import React from 'react'
 import { Text, View, StyleSheet, Image } from 'react-native';
 
 export default function Forecast(props) {
- 
+
     return (
         <View>
             <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
@@ -14,6 +14,7 @@ export default function Forecast(props) {
                 <Text style={{fontSize: 40, lineHeight: 110, color: 'white'}}> °C</Text>
             </View>
             <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+                <Image source={{uri: props.icon }} style={{ width: 50, height: 50}} />
                 <Text style={textStyle.fotecastTextMedium}>{props.main}</Text>
             </View>
                 <Text style={textStyle.fotecastText}>{props.description}</Text>
