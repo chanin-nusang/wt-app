@@ -1,5 +1,5 @@
 import React from 'react'
-import { FlatList, View, Text, StyleSheet } from 'react-native'
+import { FlatList, View, Text, StyleSheet, ImageBackground } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { StatusBar } from 'expo-status-bar'
 import { TouchableHighlight } from 'react-native-gesture-handler'
@@ -15,8 +15,8 @@ const availableZipItems = [
 const ZipItem = ({place, code, navigation}) => (
     <TouchableHighlight onPress={() => navigation.navigate('Weather', { zipCode: code})}>
     <View style={styles.ZipItem}>
-        <Text>{place}</Text>
-        <Text>{code}</Text>
+        <Text style={styles.zipPlace}>{place}</Text>
+        <Text style={styles.zipCode}>{code}</Text>
     </View>
     </TouchableHighlight>
 )
@@ -26,6 +26,7 @@ const _keyExtractor = item => item.code
 export default function ZipCodeScreen(){
     const navigation = useNavigation()
     return (
+        <ImageBackground source={require('../homebg.png')} style={styles.backdrop}>
         <View>
             <FlatList
                 data={availableZipItems}
@@ -34,19 +35,37 @@ export default function ZipCodeScreen(){
             />
             <StatusBar style="auto" />
         </View>
+        </ImageBackground>
     );
 }
 
 const styles = StyleSheet.create({
+    backdrop: {
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+        height: '100%'
+    },
     ZipItem: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-between'
+        backgroundColor: 'rgba(125,125,125,0.25)',
+        borderRadius: 20,
+        marginTop: 10,
+        marginBottom: 10,
+        marginLeft: 50,
+        marginRight: 50,
+        padding: 10
     },
     zipPlace: {
-        flex: 1,
+        textAlign: 'center',
+        fontWeight: 'bold',
+        fontSize: 25,
+        color:'#FFFFFF'
     },
     zipCode: {
-        flex: 1,
+        textAlign: 'center',
+        fontWeight: 'bold',
+        fontSize: 25,
+        color:'#FFFFFF'
     }
 })
