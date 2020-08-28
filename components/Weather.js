@@ -11,7 +11,8 @@ export default function Weather(props) {
         description: 'description',
         temp: 0,
         name: 'city',
-        country: 'country'
+        country: 'country',
+        iconId: 'iconid'
     })
 
     const kelvinToCelsius = require('kelvin-to-celsius');
@@ -27,7 +28,8 @@ export default function Weather(props) {
                     description: json.weather[0].description,
                     temp: kelvinToCelsius(json.main.temp),
                     name: json.name,
-                    country: json.sys.country
+                    country: json.sys.country,
+                    iconId: json.weather.id
                     });
                 })
             .catch((error) => {
